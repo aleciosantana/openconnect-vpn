@@ -1,0 +1,16 @@
+services:
+  openconnect-vpn:
+    build: .
+    container_name: openconnect-vpn
+    environment:
+      - VPN_USER=${VPN_USER}
+      - VPN_PASSWORD=${VPN_PASSWORD}
+      - VPN_HOST=${VPN_HOST}
+      - VPN_AUTHGROUP=${VPN_AUTHGROUP}
+      - VPN_SERVERCERT=${VPN_SERVERCERT}
+      - VPN_ROUTES=${VPN_ROUTES}
+      - VPN_DNS=${VPN_DNS}
+    cap_add:
+      - NET_ADMIN              # Permite modificações nas configurações de rede
+    network_mode: "host"       # Permite que o contêiner utilize a rede do host
+    restart: always            # Reinicia o contêiner automaticamente em caso de falhas
